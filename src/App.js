@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./style.scss";
 const data = {
@@ -9,19 +9,15 @@ const data = {
 function App() {
   const [info, setInfo] = useState("");
   const [weather, setWeather] = useState({});
-
+  console.log(weather);
   const search = (event) => {
-    if (event.key === "Enter") {
-      fetch(
-        `"${data.url}weather?i=${info}&units=metric&APPID=${data.key}`
-      ).then(
-        ((resp) => resp.json()).then((result) => {
-          setInfo("");
-          setWeather(result);
-          console.log(result);
-        })
-      );
-    }
+    event.preventDefault();
+    fetch(`${data.url}weather?q=${info}&units=metric&APPID=${data.key}`)
+      .then((res) => res.json())
+      .then((response) => {
+        setWeather(response);
+        console.log(response);
+      });
   };
 
   const dateBuilder = (d) => {
@@ -49,23 +45,37 @@ function App() {
       "Saturday",
     ];
     let day = days[d.getDay()];
-    let date = d.getDay();
+    let date = d.getDate();
     let month = months[d.getMonth()];
     let year = d.getFullYear();
     return `${day} ${date} ${month} ${year}`;
   };
   return (
-    <div className="app sunny">
+    <div
+      className={
+        typeof weather.main != "undefined"
+          ? weather.weather[0].main.includes("Clouds")
+            ? "cloudy"
+            : "app" || weather.weather[0].main.includes("Clear")
+            ? "sunny"
+            : "app" || weather.weather[0].main.includes("Rainy")
+            ? "rain"
+            : "app"
+          : "app"
+      }
+    >
       <main>
         <div className="search-box">
-          <input
-            className="search-bar"
-            type="text"
-            placeholder="Type city name ...."
-            onChange={(e) => setInfo(e.target.value)}
-            value={info}
-            onKeyUp={search}
-          />
+          <form onSubmit={search}>
+            <input
+              className="search-bar"
+              type="text"
+              placeholder="Type city name ...."
+              onChange={(e) => setInfo(e.target.value)}
+              value={info}
+              // onKeyUp={search}
+            />
+          </form>
         </div>
         {typeof weather.main !== "undefined" ? (
           <div>
@@ -76,8 +86,10 @@ function App() {
               <div className="date">{dateBuilder(new Date())}</div>
             </div>
             <div className="weather-box">
-              <div className="temperature">23°C</div>
-              <div className="Rainy">Rainy</div>
+              <div className="temperature">
+                {Math.round(weather.main.temp)}°C
+              </div>
+              <div className="Rainy">{weather.weather[0].main}</div>
             </div>
           </div>
         ) : (

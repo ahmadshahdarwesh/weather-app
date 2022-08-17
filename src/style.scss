@@ -1,25 +1,30 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-boxs;
+  box-sizing: border-box;
 }
 .app {
   background-image: url("./assets/rain.jpg");
   background-size: cover;
-  background-position: bottome;
+  background-position: bottom;
   transition: 0.4 ease-out;
-  .rain {
-    background-image: url(./assets/rain.jpg);
-  }
-  .sunny {
-    background-image: url(./assets/sunny.jpg);
-  }
-  .cloudy {
-    background-image: url(./assets/cloud.jpg);
-  }
-  .snow {
-    background-image: url(./assets/snow.jpg);
-  }
+}
+.rain {
+  background-image: url(./assets/rain.jpg);
+}
+.sunny {
+  background-image: url(./assets/sunny.jpg);
+  background-size: cover;
+  background-position: 100% 20%;
+  // background-repeat: no-repeat;
+}
+.cloudy {
+  background-image: url(./assets/cloud.jpg);
+  background-size: cover;
+  background-position: 100% 40%;
+}
+.snow {
+  background-image: url(./assets/snow.jpg);
 }
 
 main {
@@ -33,25 +38,27 @@ main {
 
   .search-box {
     width: 100%;
-    margin: 0 0 75px;
-    .search-bar {
-      display: block;
+    margin: 0 0 75px 0;
+    // padding: 2%;
+    form {
       width: 100%;
-      padding: 20px;
-      appearance: none;
-      background: none;
-      border: none;
-      outline: none;
-      background-color: rgba(255, 255, 255, 0.5);
-      border-radius: 0px 0px 16px 16px;
-      margin-top: -25px;
-      box-shadow: 0px 8px rgba(255, 255, 255, 0.4);
-      font-size: 20px;
-      color: rgb(44, 41, 48);
-      transition: 0.4s ease;
-    }
-    .search-bar:focus {
-      background-color: rgba(255, 255, 255, 0.75);
+      .search-bar {
+        padding: 2%;
+        width: 100%;
+        // padding: 20px;
+        background: none;
+        border: none;
+        outline: none;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 0px 0px 16px 16px;
+        box-shadow: 0px 8px rgba(255, 255, 255, 0.4);
+        font-size: 20px;
+        color: rgb(44, 41, 48);
+        transition: 0.4s ease;
+      }
+      .search-bar:focus {
+        background-color: rgba(255, 255, 255, 0.75);
+      }
     }
   }
   .location-box {
