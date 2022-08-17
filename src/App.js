@@ -96,6 +96,9 @@ function App() {
           ""
         )}
       </main>
+      <div className="footer">
+        Made for you with <span>&#128151; </span> by Ahmad
+      </div>
     </div>
   );
 }
