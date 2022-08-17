@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+import "./style.scss";
 const api = {
   key: "2d730ae5df478b06fa385a42f118ec2c",
   url: "https://api.openweathermap.org/data/2.5/",
@@ -7,7 +9,7 @@ const api = {
 function App() {
   return (
     <div className="app">
-      <container>
+      <main>
         <div className="search-box">
           <input
             className="search-bar"
@@ -15,7 +17,7 @@ function App() {
             placeholder="Type city name ...."
           />
         </div>
-      </container>
+      </main>
     </div>
   );
 }
