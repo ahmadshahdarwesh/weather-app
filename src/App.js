@@ -58,7 +58,7 @@ function App() {
             ? "cloudy"
             : "app" || weather.weather[0].main.includes("Clear")
             ? "sunny"
-            : "app" || weather.weather[0].main.includes("Rainy")
+            : "app" || weather.weather[0].main.includes("Rain")
             ? "rain"
             : "app"
           : "app"
